@@ -26,10 +26,8 @@ got(CONST.URL, function (err, data, res) {
   var $ = cheerio.load(data)
 
   var emojis = $('li').map(function (i, el) {
-    console.log(decode(el.children[0].data))
-
-    var emoji = 'decode($(this).text())'
-    // log.debug('detected', emoji)
+    var emoji = decode(el.children[0].data)
+    log.debug('detected', emoji)
     return emoji
   }).get()
 

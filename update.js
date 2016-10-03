@@ -2,6 +2,7 @@
 
 var cheerio = require('cheerio')
 var Acho = require('acho')
+var decode = require('he').decode
 var got = require('got')
 var fs = require('fs')
 var log = Acho()
@@ -25,8 +26,10 @@ got(CONST.URL, function (err, data, res) {
   var $ = cheerio.load(data)
 
   var emojis = $('li').map(function (i, el) {
-    var emoji = $(this).text()
-    log.debug('detected', emoji)
+    console.log(decode(el.children[0].data))
+
+    var emoji = 'decode($(this).text())'
+    // log.debug('detected', emoji)
     return emoji
   }).get()
 
